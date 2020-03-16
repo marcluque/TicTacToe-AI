@@ -8,6 +8,27 @@
     <artifactId>TicTacToeMiniMax</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>tictactoeai</name>
+    <description>A simple AI for TicTacToe with Alpha-Beta pruning and binary enconding for the board</description>
+    <url>http://datasecs.de</url>
+    <inceptionYear>2020</inceptionYear>
+
+    <developers>
+        <developer>
+            <name>DataSecs</name>
+            <email>datasecs@outlook.de</email>
+            <url>https://datasecs.de</url>
+            <organizationUrl>https://github.com/DataSecs</organizationUrl>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>BSD 2-Clause License</name>
+            <url>https://www.freebsd.org/copyright/freebsd-license.html</url>
+        </license>
+    </licenses>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

@@ -1,3 +1,6 @@
+/*
+ * Created with love by DataSecs on 16.03.2020.
+ */
 public class AlphaBetaSearch {
 
     public static void alphaBetaSearch(int player) {

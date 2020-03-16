@@ -1,5 +1,8 @@
 import java.util.*;
 
+/*
+ * Created with love by DataSecs on 16.03.2020.
+ */
 public class Map {
 
     public static int map;
@@ -14,7 +17,6 @@ public class Map {
 
     // Position is 0 to 8, player is 0 or 1
     public static int setTile(int map, int position, int player) {
-
         // Check tile is not in use
         if ((map & (1 << position + 22)) == (1 << position + 22) || (map & (1 << position + 13)) == (1 << position + 13)) {
             System.out.printf("Position %d is already set, please pick another position!%n", position + 1);
