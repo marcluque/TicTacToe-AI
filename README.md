@@ -4,7 +4,7 @@ This is a simple AI for TicTacToe. There is no real challenge in constructing an
 
 Results with MiniMax on my machine:
 
-![MiniMax runtime results](http://datasecs.de/images/TicTacToeAI_time_results.png)
+![MiniMax runtime results](http://datasecs.de/images/TicTacToeAI_time_minimax_results.png)
 
 Alpha-Beta:
 
