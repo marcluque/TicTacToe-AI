@@ -6,6 +6,33 @@ import java.util.Scanner;
 public class TicTacToe {
 
     public static void main(String[] args) {
+        long start;
+        long end;
+        long best = Integer.MAX_VALUE;
+        long stateNumber = -1;
+        int move = -1;
+        for (int i = 0; i < 1000; i++) {
+            start = System.nanoTime();
+            MiniMaxSearch.miniMax(1);
+            end = System.nanoTime() - start;
+
+            if (end < best) {
+                best = end;
+                stateNumber = Map.visitedStates;
+                move = Map.returnMove;
+            }
+
+            Map.visitedStates = 0;
+        }
+
+        System.out.println("=============================== Stats MiniMax ===============================");
+        System.out.printf("Found move: %d%n", (move + 1));
+        System.out.printf("Time: %d ns = %s microsec = %s ms%n", best, best / 1_000d, best / 1_000_000d);
+        System.out.printf("Visited states: %d%n", stateNumber);
+        System.out.printf("Time/State: %d ns = %s microsec = %s ms%n", best / stateNumber, (best / 1_000d) / stateNumber, (best / 1_000_000d) / stateNumber);
+        System.out.println("============================================================================");
+
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Please pick whether opponent shall use Alpha-Beta pruning (1) or plain MiniMax (0)");
@@ -35,7 +62,7 @@ public class TicTacToe {
             if (choice == 0) {
                 long time = System.nanoTime();
                 MiniMaxSearch.miniMax(1);
-                long end = System.nanoTime() - time;
+                end = System.nanoTime() - time;
                 System.out.println("=============================== Stats MiniMax ===============================");
                 System.out.printf("Found move: %d%n", (Map.returnMove + 1));
                 System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);
@@ -56,7 +83,7 @@ public class TicTacToe {
             else {
                 long time = System.nanoTime();
                 AlphaBetaSearch.alphaBetaSearch(1);
-                long end = System.nanoTime() - time;
+                end = System.nanoTime() - time;
                 System.out.println("============================= Stats Alpha-Beta ============================");
                 System.out.printf("Found move: %d%n", (Map.returnMove + 1));
                 System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);

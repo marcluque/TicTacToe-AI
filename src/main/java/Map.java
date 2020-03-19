@@ -18,12 +18,12 @@ public class Map {
     // Position is 0 to 8, player is 0 or 1
     public static int setTile(int map, int position, int player) {
         // Check tile is not in use
-        if ((map & (1 << position + 22)) == (1 << position + 22) || (map & (1 << position + 13)) == (1 << position + 13)) {
+        if ((map & (1 << position + 9)) == (1 << position + 9) || (map & (1 << position)) == (1 << position)) {
             System.out.printf("Position %d is already set, please pick another position!%n", position + 1);
             return Integer.MIN_VALUE;
         } else {
             // Else write 1 to the target position
-            map = map | (1 << position + 22 - (player * 9));
+            map = map | (1 << position + (player * 9));
         }
 
         return map;
@@ -48,8 +48,8 @@ public class Map {
 
         for (int position = 0; position < 9; position++) {
             // Check whether position is set by player
-            int targetBitPlayer0 = (1 << (position + 22));
-            int targetBitPlayer1 = (1 << (position + 13));
+            int targetBitPlayer0 = (1 << (position));
+            int targetBitPlayer1 = (1 << (position + 9));
 
             int value0 = (map & targetBitPlayer0) == targetBitPlayer0 ? (computerPlayer == 0 ? 1 : -1) : 0;
             int value1 = (map & targetBitPlayer1) == targetBitPlayer1 ? (computerPlayer == 1 ? 1 : -1) : 0;
@@ -57,17 +57,21 @@ public class Map {
             // Row
             rows[position / 3] = rows[position / 3] + value0 + value1;
             if (rows[position / 3] == 3) {
-                result++;
+                result = 1;
+                break;
             } else if (rows[position / 3] == -3) {
-                result--;
+                result = -1;
+                break;
             }
 
             // Columns
             cols[position % 3] = cols[position % 3] + value0 + value1;
             if (cols[position % 3] == 3) {
-                result++;
+                result = 1;
+                break;
             } else if (cols[position % 3] == -3) {
-                result--;
+                result = -1;
+                break;
             }
 
             // Diagonals
@@ -75,9 +79,11 @@ public class Map {
             if (position % 3 == position / 3) {
                 diags[0] = diags[0] + value0 + value1;
                 if (diags[0] == 3) {
-                    result++;
+                    result = 1;
+                    break;
                 } else if (diags[0] == -3) {
-                    result--;
+                    result = -1;
+                    break;
                 }
             }
 
@@ -85,20 +91,16 @@ public class Map {
             if ((position / 3) + (position % 3) == 2) {
                 diags[1] = diags[1] + value0 + value1;
                 if (diags[1] == 3) {
-                    result++;
+                    result = 1;
+                    break;
                 } else if (diags[1] == -3) {
-                    result--;
+                    result = -1;
+                    break;
                 }
             }
         }
 
-        // If no winner was found AND board is full, we have a draw
-        boolean fullBoard = ((map & (0b111111111 << 22)) | ((map & (0b111111111 << 13)) << 9)) == 2143289344;
-        if (!fullBoard && result == 0) {
-            result = 100;
-        }
-
-        return result;
+        return ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) != 511 && result == 0 ? 100 : result;
     }
 
     public static void printBoard(int map) {
@@ -106,13 +108,13 @@ public class Map {
             String printSign = "[ ]";
 
             // Player 0
-            int targetBit = 22 + i;
+            int targetBit = 9 + i;
             if ((map & (1 << targetBit)) == (1 << targetBit)) {
                 printSign = "[X]";
             }
 
             // Player 1
-            targetBit = 13 + i;
+            targetBit = i;
             if ((map & (1 << targetBit)) == (1 << targetBit)) {
                 printSign = "[O]";
             }
