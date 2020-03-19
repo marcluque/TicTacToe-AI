@@ -32,7 +32,7 @@ public class AlphaBetaSearch {
         int[] moves = new int[9];
         int moveSize = 0;
         for (int position = 0; position < 9; position++) {
-            if ((map & (1 << position + 22)) != (1 << position + 22) && (map & (1 << position + 13)) != (1 << position + 13)) {
+            if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
                 moves[moveSize++] = position;
             }
         }
@@ -65,7 +65,7 @@ public class AlphaBetaSearch {
         int[] moves = new int[9];
         int moveSize = 0;
         for (int position = 0; position < 9; position++) {
-            if ((map & (1 << position + 22)) != (1 << position + 22) && (map & (1 << position + 13)) != (1 << position + 13)) {
+            if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
                 moves[moveSize++] = position;
             }
         }
