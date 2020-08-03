@@ -4,11 +4,11 @@ This is a simple AI for TicTacToe. There is no real challenge in constructing an
 
 Results with MiniMax on my machine:
 
-![MiniMax runtime results](http://datasecs.de/images/TicTacToeAI_time_minimax_results.png)
+![MiniMax runtime results](http://datasecs.de/images/TicTacToeAI_time_mini-max_results.png)
 
 Alpha-Beta:
 
-![Alpha-Beta runtime results](http://datasecs.de/images/TicTacToeAI_time_alphaBeta_results.png)
+![Alpha-Beta runtime results](http://datasecs.de/images/TicTacToeAI_time_alpha-beta_results.png)
 
 My machine:  
 Ubuntu 18  
