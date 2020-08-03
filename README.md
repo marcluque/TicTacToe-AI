@@ -10,8 +10,8 @@ Alpha-Beta:
 
 ![Alpha-Beta runtime results](http://datasecs.de/images/TicTacToeAI_time_alphaBeta_results.png)
 
-My machine:
-Ubuntu 18
+My machine:  
+Ubuntu 18  
 Intel i5-8250U @ 1.60 GHz  
 M.2 (NGFF) 2280 SSD  
 8 GB DDR4-2400 SDRAM
