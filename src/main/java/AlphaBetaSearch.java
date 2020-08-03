@@ -28,24 +28,17 @@ public class AlphaBetaSearch {
         Map.visitedStates++;
         int value = Integer.MIN_VALUE;
 
-        // Calculate available moves
-        int[] moves = new int[9];
-        int moveSize = 0;
+        // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                moves[moveSize++] = position;
+                value = Math.max(value, minValue(Map.setTile(map, position, player), (player + 1) % 2, alpha, beta));
+
+                if (value >= beta) {
+                    return value;
+                }
+
+                alpha = Math.max(alpha, value);
             }
-        }
-
-        // Execute moves
-        for (int i = 0; i < moveSize; i++) {
-            value = Math.max(value, minValue(Map.setTile(map, moves[i], player), (player + 1) % 2, alpha, beta));
-
-            if (value >= beta) {
-                return value;
-            }
-
-            alpha = Math.max(alpha, value);
         }
 
         return value;
@@ -61,24 +54,17 @@ public class AlphaBetaSearch {
         Map.visitedStates++;
         int value = Integer.MAX_VALUE;
 
-        // Calculate available moves
-        int[] moves = new int[9];
-        int moveSize = 0;
+        // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                moves[moveSize++] = position;
+                value = Math.min(value, maxValue(Map.setTile(map, position, player), (player + 1) % 2, alpha, beta));
+
+                if (value <= alpha) {
+                    return value;
+                }
+
+                beta = Math.min(beta, value);
             }
-        }
-
-        // Execute moves
-        for (int i = 0; i < moveSize; i++) {
-            value = Math.min(value, maxValue(Map.setTile(map, moves[i], player), (player + 1) % 2, alpha, beta));
-
-            if (value <= alpha) {
-                return value;
-            }
-
-            beta = Math.min(beta, value);
         }
 
         return value;

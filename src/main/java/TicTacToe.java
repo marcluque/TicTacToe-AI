@@ -33,9 +33,9 @@ public class TicTacToe {
         for (int i = 0; i < 4; i++) {
             // MiniMax Opponent
             if (choice == 0) {
-                long time = System.nanoTime();
+                long start = System.nanoTime();
                 MiniMaxSearch.miniMax(1);
-                long end = System.nanoTime() - time;
+                long end = System.nanoTime() - start;
                 System.out.println("=============================== Stats MiniMax ===============================");
                 System.out.printf("Found move: %d%n", (Map.returnMove + 1));
                 System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);
@@ -54,9 +54,9 @@ public class TicTacToe {
             }
             // Alpha-Beta Opponent
             else {
-                long time = System.nanoTime();
+                long start = System.nanoTime();
                 AlphaBetaSearch.alphaBetaSearch(1);
-                long end = System.nanoTime() - time;
+                long end = System.nanoTime() - start;
                 System.out.println("============================= Stats Alpha-Beta ============================");
                 System.out.printf("Found move: %d%n", (Map.returnMove + 1));
                 System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);

@@ -1,3 +1,5 @@
+import java.util.function.Consumer;
+
 /*
  * Created with love by DataSecs on 16.03.2020.
  */
@@ -27,23 +29,14 @@ public class MiniMaxSearch {
         }
 
         Map.visitedStates++;
-        int value = Integer.MIN_VALUE;
+        final int[] value = {Integer.MIN_VALUE};
 
-        // Calculate available moves
-        int[] moves = new int[9];
-        int moveSize = 0;
-        for (int position = 0; position < 9; position++) {
-            if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                moves[moveSize++] = position;
-            }
-        }
+        // Calculate available moves and execute when found
+        search(map, move -> {
+            value[0] = Math.max(value[0], minValue(Map.setTile(map, move, player), (player + 1) % 2));
+        });
 
-        // Execute moves
-        for (int i = 0; i < moveSize; i++) {
-            value = Math.max(value, minValue(Map.setTile(map, moves[i], player), (player + 1) % 2));
-        }
-
-        return value;
+        return value[0];
     }
 
     private static int minValue(int map, int player) {
@@ -54,22 +47,21 @@ public class MiniMaxSearch {
         }
 
         Map.visitedStates++;
-        int value = Integer.MAX_VALUE;
+        final int[] value = {Integer.MAX_VALUE};
 
-        // Calculate available moves
-        int[] moves = new int[9];
-        int moveSize = 0;
+        // Calculate available moves and execute when found
+        search(map, move -> {
+            value[0] = Math.min(value[0], maxValue(Map.setTile(map, move, player), (player + 1) % 2));
+        });
+
+        return value[0];
+    }
+
+    public static void search(int map, Consumer<Integer> consumer) {
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                moves[moveSize++] = position;
+                consumer.accept(position);
             }
         }
-
-        // Execute moves
-        for (int i = 0; i < moveSize; i++) {
-            value = Math.min(value, maxValue(Map.setTile(map, moves[i], player), (player + 1) % 2));
-        }
-
-        return value;
     }
 }

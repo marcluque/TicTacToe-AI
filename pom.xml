@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>TicTacToeMiniMax</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>tictactoeai</name>
     <description>A simple AI for TicTacToe with Alpha-Beta pruning and binary encoding for the board</description>
