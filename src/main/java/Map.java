@@ -23,7 +23,7 @@ public class Map {
             return Integer.MIN_VALUE;
         } else {
             // Else write 1 to the target position
-            map = map | (1 << position + (player * 9));
+            map |= (1 << position + (player * 9));
         }
 
         return map;
@@ -53,9 +53,10 @@ public class Map {
 
             int value0 = (map & targetBitPlayer0) == targetBitPlayer0 ? (computerPlayer == 0 ? 1 : -1) : 0;
             int value1 = (map & targetBitPlayer1) == targetBitPlayer1 ? (computerPlayer == 1 ? 1 : -1) : 0;
+            int sum = value0 + value1;
 
-            // Row
-            rows[position / 3] = rows[position / 3] + value0 + value1;
+            // Rows
+            rows[position / 3] += sum;
             if (rows[position / 3] == 3) {
                 result = 1;
                 break;
@@ -65,7 +66,7 @@ public class Map {
             }
 
             // Columns
-            cols[position % 3] = cols[position % 3] + value0 + value1;
+            cols[position % 3] += sum;
             if (cols[position % 3] == 3) {
                 result = 1;
                 break;
@@ -77,7 +78,7 @@ public class Map {
             // Diagonals
             // First case is on the diagonal (0,0)..(n,n)
             if (position % 3 == position / 3) {
-                diags[0] = diags[0] + value0 + value1;
+                diags[0] += sum;
                 if (diags[0] == 3) {
                     result = 1;
                     break;
@@ -89,7 +90,7 @@ public class Map {
 
             // Second case is on the diagonal (0,n)..(n,0)
             if ((position / 3) + (position % 3) == 2) {
-                diags[1] = diags[1] + value0 + value1;
+                diags[1] += sum;
                 if (diags[1] == 3) {
                     result = 1;
                     break;
@@ -100,7 +101,8 @@ public class Map {
             }
         }
 
-        return ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) != 511 && result == 0 ? 100 : result;
+        boolean mapFull = ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) != 511;
+        return mapFull && result == 0 ? 100 : result;
     }
 
     public static void printBoard(int map) {
