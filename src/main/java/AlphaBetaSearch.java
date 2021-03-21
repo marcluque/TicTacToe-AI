@@ -1,16 +1,16 @@
 /*
- * Created with love by DataSecs on 16.03.2020.
+ * Created with <3 by marcluque, March 2020
  */
 public class AlphaBetaSearch {
 
-    public static void alphaBetaSearch(int player) {
+    public static void alphaBetaSearch() {
         int map = Map.map;
-        Map.computerPlayer = player;
-
         int value = Integer.MIN_VALUE;
+        Map.visitedStates++;
 
         for (int move : Map.moves) {
-            int newValue = minValue(Map.setTile(map, move, player), (player + 1) % 2, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            int newValue = minValue(Map.setTile(map, move, Map.MAX), Integer.MIN_VALUE, Integer.MAX_VALUE);
+
             if (newValue > value) {
                 Map.returnMove = move;
                 value = newValue;
@@ -18,20 +18,21 @@ public class AlphaBetaSearch {
         }
     }
 
-    private static int maxValue(int map, int player, int alpha, int beta) {
+    private static int maxValue(int map, int alpha, int beta) {
+        Map.visitedStates++;
+
         // Terminal test
         int result = Map.utility(map);
         if (result != 100) {
             return result;
         }
 
-        Map.visitedStates++;
         int value = Integer.MIN_VALUE;
 
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.max(value, minValue(Map.setTile(map, position, player), (player + 1) % 2, alpha, beta));
+                value = Math.max(value, minValue(Map.setTile(map, position, Map.MAX), alpha, beta));
 
                 if (value >= beta) {
                     return value;
@@ -44,20 +45,21 @@ public class AlphaBetaSearch {
         return value;
     }
 
-    private static int minValue(int map, int player, int alpha, int beta) {
+    private static int minValue(int map, int alpha, int beta) {
+        Map.visitedStates++;
+
         // Terminal test
         int result = Map.utility(map);
         if (result != 100) {
             return result;
         }
 
-        Map.visitedStates++;
         int value = Integer.MAX_VALUE;
 
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.min(value, maxValue(Map.setTile(map, position, player), (player + 1) % 2, alpha, beta));
+                value = Math.min(value, maxValue(Map.setTile(map, position, Map.MIN), alpha, beta));
 
                 if (value <= alpha) {
                     return value;

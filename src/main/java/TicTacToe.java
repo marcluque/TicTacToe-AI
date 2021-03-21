@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /*
- * Created with love by DataSecs on 16.03.2020.
+ * Created with <3 by marcluque, March 2020
  */
 public class TicTacToe {
 
@@ -31,47 +31,27 @@ public class TicTacToe {
         Map.printBoard(Map.map);
 
         for (int i = 0; i < 4; i++) {
+            long start = System.nanoTime();
+
             // MiniMax Opponent
             if (choice == 0) {
-                long start = System.nanoTime();
-                MiniMaxSearch.miniMax(1);
+                MiniMaxSearch.miniMax();
                 long end = System.nanoTime() - start;
-                System.out.println("=============================== Stats MiniMax ===============================");
-                System.out.printf("Found move: %d%n", (Map.returnMove + 1));
-                System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);
-                System.out.printf("Visited states: %d%n", Map.visitedStates);
-                System.out.printf("Time/State: %d ns = %s microsec = %s ms%n", end / Map.visitedStates, (end / 1_000d) / Map.visitedStates, (end / 1_000_000d) / Map.visitedStates);
-                System.out.println("============================================================================");
-
-                System.out.println("Your opponent picked: " + (Map.returnMove + 1));
-                Map.map = Map.setTile(Map.map, Map.returnMove, 1);
-                Map.moves.remove(Map.returnMove);
-                System.out.println("Current board:");
-                Map.printBoard(Map.map);
-                if (checkWin()) {
-                    break;
-                }
+                printStats("MiniMax", end);
             }
             // Alpha-Beta Opponent
             else {
-                long start = System.nanoTime();
-                AlphaBetaSearch.alphaBetaSearch(1);
+                AlphaBetaSearch.alphaBetaSearch();
                 long end = System.nanoTime() - start;
-                System.out.println("============================= Stats Alpha-Beta ============================");
-                System.out.printf("Found move: %d%n", (Map.returnMove + 1));
-                System.out.printf("Time: %d ns = %s microsec = %s ms%n", end, end / 1_000d, end / 1_000_000d);
-                System.out.printf("Visited states: %d%n", Map.visitedStates);
-                System.out.printf("Time/State: %d ns = %s microsec = %s ms%n", end / Map.visitedStates, (end / 1_000d) / Map.visitedStates, (end / 1_000_000d) / Map.visitedStates);
-                System.out.println("===========================================================================");
+                printStats("Alpha-Beta", end);
+            }
 
-                System.out.println("Your opponent picked: " + (Map.returnMove + 1));
-                Map.map = Map.setTile(Map.map, Map.returnMove, 1);
-                Map.moves.remove(Map.returnMove);
-                System.out.println("Current board:");
-                Map.printBoard(Map.map);
-                if (checkWin()) {
-                    break;
-                }
+            Map.map = Map.setTile(Map.map, Map.returnMove, 1);
+            Map.moves.remove(Map.returnMove);
+            System.out.println("Current board:");
+            Map.printBoard(Map.map);
+            if (checkWin()) {
+                break;
             }
 
             System.out.println("Please pick a field from 1-9:");
@@ -97,6 +77,17 @@ public class TicTacToe {
 
             Map.visitedStates = 0;
         }
+    }
+
+    private static void printStats(String type, long endTime) {
+        System.out.println("========================== Stats " + type + " =========================");
+        System.out.printf("Found move: %d%n", (Map.returnMove + 1));
+        System.out.printf("Time: %d ns = %s µs = %s ms%n", endTime, endTime / 1_000d, endTime / 1_000_000d);
+        System.out.printf("Visited states: %d%n", Map.visitedStates);
+        System.out.printf("Time/State: %d ns = %s µs = %s ms%n", endTime / Map.visitedStates, (endTime / 1_000d) / Map.visitedStates, (endTime / 1_000_000d) / Map.visitedStates);
+        System.out.println("=====================================================================");
+
+        System.out.println("Your opponent picked: " + (Map.returnMove + 1));
     }
 
     private static boolean checkWin() {
