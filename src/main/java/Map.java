@@ -1,19 +1,44 @@
 import java.util.*;
 
 /*
- * Created with love by DataSecs on 16.03.2020.
+ * Created with <3 by marcluque, March 2020
  */
 public class Map {
 
     public static int map;
 
-    public static Set<Integer> moves = new HashSet<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
+    public static Set<Integer> moves = new HashSet<>(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
-    public static int visitedStates = -10;
+    public static int visitedStates = 0;
 
     public static int returnMove = -1;
 
-    public static int computerPlayer = -1;
+    public static final int MAX = 1;
+
+    public static final int MIN = 0;
+
+    public static int[] terminalTest = new int[8];
+
+    static {
+        // ROW 1
+        terminalTest[0] = 0b001001001;
+        // ROW 2
+        terminalTest[1] = 0b001001001 << 1;
+        // ROW 3
+        terminalTest[2] = 0b001001001 << 2;
+
+        // COL 1
+        terminalTest[3] = 0b000000111;
+        // COL 2
+        terminalTest[4] = 0b000000111 << 3;
+        // COL 3
+        terminalTest[5] = 0b000000111 << 6;
+
+        // DIAG 1
+        terminalTest[6] = 0b100010001;
+        // DIAG 2
+        terminalTest[7] = 0b001010100;
+    }
 
     // Position is 0 to 8, player is 0 or 1
     public static int setTile(int map, int position, int player) {
@@ -30,79 +55,22 @@ public class Map {
     }
 
     public static int utility(int map) {
-        // 1. Win: If you have two in a row, play the third to get three in a row.
-        // 2. Block: If the opponent has two in a row, play the third to block them.
-        // 3. Fork: Create an opportunity where you can win in two ways.
-        // 4. Block Opponent's Fork:
-        //      Option 1: Create two in a row to force the opponent into defending, as long as it doesn't result in them creating a fork or winning. For example, if "X" has a corner, "O" has the center, and "X" has the opposite corner as well, "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
-        //      Option 2: If there is a configuration where the opponent can fork, block that fork.
-        // 5. Center: Play the center.
-        // 6. Opposite Corner: If the opponent is in the corner, play the opposite corner.
-        // 7. Empty Corner: Play an empty corner.
-        // 8. Empty Side: Play an empty side.
+        int maxMap = (map & 0b111111111000000000) >> 9;
+        int minMap = map & 0b111111111;
 
-        int result = 0;
-        int[] rows = new int[3];
-        int[] cols = new int[3];
-        int[] diags = new int[3];
-
-        for (int position = 0; position < 9; position++) {
-            // Check whether position is set by player
-            int targetBitPlayer0 = (1 << (position));
-            int targetBitPlayer1 = (1 << (position + 9));
-
-            int value0 = (map & targetBitPlayer0) == targetBitPlayer0 ? (computerPlayer == 0 ? 1 : -1) : 0;
-            int value1 = (map & targetBitPlayer1) == targetBitPlayer1 ? (computerPlayer == 1 ? 1 : -1) : 0;
-            int sum = value0 + value1;
-
-            // Rows
-            rows[position / 3] += sum;
-            if (rows[position / 3] == 3) {
-                result = 1;
-                break;
-            } else if (rows[position / 3] == -3) {
-                result = -1;
-                break;
+        for (int j : terminalTest) {
+            // MAX
+            if ((maxMap & j) == j) {
+                return 1;
             }
-
-            // Columns
-            cols[position % 3] += sum;
-            if (cols[position % 3] == 3) {
-                result = 1;
-                break;
-            } else if (cols[position % 3] == -3) {
-                result = -1;
-                break;
-            }
-
-            // Diagonals
-            // First case is on the diagonal (0,0)..(n,n)
-            if (position % 3 == position / 3) {
-                diags[0] += sum;
-                if (diags[0] == 3) {
-                    result = 1;
-                    break;
-                } else if (diags[0] == -3) {
-                    result = -1;
-                    break;
-                }
-            }
-
-            // Second case is on the diagonal (0,n)..(n,0)
-            if ((position / 3) + (position % 3) == 2) {
-                diags[1] += sum;
-                if (diags[1] == 3) {
-                    result = 1;
-                    break;
-                } else if (diags[1] == -3) {
-                    result = -1;
-                    break;
-                }
+            // MIN
+            else if ((minMap & j) == j) {
+                return -1;
             }
         }
 
-        boolean mapFull = ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) != 511;
-        return mapFull && result == 0 ? 100 : result;
+        boolean mapFull = ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) == 0b111111111;
+        return mapFull ? 0 : 100;
     }
 
     public static void printBoard(int map) {
