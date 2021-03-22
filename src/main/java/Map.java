@@ -96,4 +96,13 @@ public class Map {
             }
         }
     }
+
+    public static void printStats(String type, long endTime) {
+        System.out.println("========================== Stats " + type + " =========================");
+        System.out.printf("Found move: %d%n", (Map.returnMove + 1));
+        System.out.printf("Time: %d ns = %s µs = %s ms%n", endTime, endTime / 1_000d, endTime / 1_000_000d);
+        System.out.printf("Visited states: %d%n", Map.visitedStates);
+        System.out.printf("Time/State: %d ns = %s µs = %s ms%n", endTime / Map.visitedStates, (endTime / 1_000d) / Map.visitedStates, (endTime / 1_000_000d) / Map.visitedStates);
+        System.out.println("=====================================================================");
+    }
 }

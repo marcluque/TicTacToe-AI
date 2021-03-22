@@ -21,12 +21,7 @@ public class PerformanceTest {
             }
         }
 
-        System.out.println("=========================== Stats MiniMax ==========================");
-        System.out.printf("Found move: %d%n", (Map.returnMove + 1));
-        System.out.printf("Time: %d ns = %s µs = %s ms%n", best, best / 1_000d, best / 1_000_000d);
-        System.out.printf("Visited states: %d%n", Map.visitedStates);
-        System.out.printf("Time/State: %d ns = %s µs = %s ms%n", best / Map.visitedStates, (best / 1_000d) / Map.visitedStates, (best / 1_000_000d) / Map.visitedStates);
-        System.out.println("====================================================================");
+        Map.printStats("MiniMax", best);
         System.out.println();
 
         // Alpha-Beta
@@ -34,19 +29,14 @@ public class PerformanceTest {
         for (int i = 0; i < 10000; i++) {
             Map.visitedStates = 0;
             long start = System.nanoTime();
-            MiniMaxSearch.search();
+            AlphaBetaSearch.search();
             long end = System.nanoTime();
             if ((end - start) < best) {
                 best = (end - start);
             }
         }
 
-        System.out.println("=========================== Stats MiniMax ==========================");
-        System.out.printf("Found move: %d%n", (Map.returnMove + 1));
-        System.out.printf("Time: %d ns = %s µs = %s ms%n", best, best / 1_000d, best / 1_000_000d);
-        System.out.printf("Visited states: %d%n", Map.visitedStates);
-        System.out.printf("Time/State: %d ns = %s µs = %s ms%n", best / Map.visitedStates, (best / 1_000d) / Map.visitedStates, (best / 1_000_000d) / Map.visitedStates);
-        System.out.println("====================================================================");
+        Map.printStats("Alpha-Beta", best);
         System.out.println();
     }
 }

@@ -37,13 +37,15 @@ public class TicTacToe {
             if (choice == 0) {
                 MiniMaxSearch.search();
                 long end = System.nanoTime() - start;
-                printStats("MiniMax", end);
+                Map.printStats("MiniMax", end);
+                System.out.println("Your opponent picked: " + (Map.returnMove + 1));
             }
             // Alpha-Beta Opponent
             else {
                 AlphaBetaSearch.search();
                 long end = System.nanoTime() - start;
-                printStats("Alpha-Beta", end);
+                Map.printStats("Alpha-Beta", end);
+                System.out.println("Your opponent picked: " + (Map.returnMove + 1));
             }
 
             Map.map = Map.setTile(Map.map, Map.returnMove, 1);
@@ -77,17 +79,6 @@ public class TicTacToe {
 
             Map.visitedStates = 0;
         }
-    }
-
-    private static void printStats(String type, long endTime) {
-        System.out.println("========================== Stats " + type + " =========================");
-        System.out.printf("Found move: %d%n", (Map.returnMove + 1));
-        System.out.printf("Time: %d ns = %s µs = %s ms%n", endTime, endTime / 1_000d, endTime / 1_000_000d);
-        System.out.printf("Visited states: %d%n", Map.visitedStates);
-        System.out.printf("Time/State: %d ns = %s µs = %s ms%n", endTime / Map.visitedStates, (endTime / 1_000d) / Map.visitedStates, (endTime / 1_000_000d) / Map.visitedStates);
-        System.out.println("=====================================================================");
-
-        System.out.println("Your opponent picked: " + (Map.returnMove + 1));
     }
 
     private static boolean checkWin() {
