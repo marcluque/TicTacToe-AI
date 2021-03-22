@@ -17,27 +17,27 @@ public class Map {
 
     public static final int MIN = 0;
 
-    public static int[] terminalTest = new int[8];
+    private static final int[] TERMINAL_TEST = new int[8];
 
     static {
         // ROW 1
-        terminalTest[0] = 0b001001001;
+        TERMINAL_TEST[0] = 0b001001001;
         // ROW 2
-        terminalTest[1] = 0b001001001 << 1;
+        TERMINAL_TEST[1] = TERMINAL_TEST[0] << 1;
         // ROW 3
-        terminalTest[2] = 0b001001001 << 2;
+        TERMINAL_TEST[2] = TERMINAL_TEST[0] << 2;
 
         // COL 1
-        terminalTest[3] = 0b000000111;
+        TERMINAL_TEST[3] = 0b000000111;
         // COL 2
-        terminalTest[4] = 0b000000111 << 3;
+        TERMINAL_TEST[4] = TERMINAL_TEST[3] << 3;
         // COL 3
-        terminalTest[5] = 0b000000111 << 6;
+        TERMINAL_TEST[5] = TERMINAL_TEST[3] << 6;
 
         // DIAG 1
-        terminalTest[6] = 0b100010001;
+        TERMINAL_TEST[6] = 0b100010001;
         // DIAG 2
-        terminalTest[7] = 0b001010100;
+        TERMINAL_TEST[7] = 0b001010100;
     }
 
     // Position is 0 to 8, player is 0 or 1
@@ -58,7 +58,7 @@ public class Map {
         int maxMap = (map & 0b111111111000000000) >> 9;
         int minMap = map & 0b111111111;
 
-        for (int j : terminalTest) {
+        for (int j : TERMINAL_TEST) {
             // MAX
             if ((maxMap & j) == j) {
                 return 1;

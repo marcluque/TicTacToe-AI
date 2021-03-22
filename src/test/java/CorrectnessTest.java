@@ -22,7 +22,7 @@ public class CorrectnessTest {
 
         Map.moves.removeAll(List.of(0, 1, 2, 3, 4, 5, 6));
 
-        MiniMaxSearch.miniMax();
+        MiniMaxSearch.search();
 
         assert Map.visitedStates == 5;
         assert Map.returnMove == 8;

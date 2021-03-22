@@ -35,13 +35,13 @@ public class TicTacToe {
 
             // MiniMax Opponent
             if (choice == 0) {
-                MiniMaxSearch.miniMax();
+                MiniMaxSearch.search();
                 long end = System.nanoTime() - start;
                 printStats("MiniMax", end);
             }
             // Alpha-Beta Opponent
             else {
-                AlphaBetaSearch.alphaBetaSearch();
+                AlphaBetaSearch.search();
                 long end = System.nanoTime() - start;
                 printStats("Alpha-Beta", end);
             }

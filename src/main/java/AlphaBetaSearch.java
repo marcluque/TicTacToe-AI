@@ -3,7 +3,7 @@
  */
 public class AlphaBetaSearch {
 
-    public static void alphaBetaSearch() {
+    public static void search() {
         int map = Map.map;
         int value = Integer.MIN_VALUE;
         Map.visitedStates++;

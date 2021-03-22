@@ -5,7 +5,7 @@ import java.util.function.Consumer;
  */
 public class MiniMaxSearch {
 
-    public static void miniMax() {
+    public static void search() {
         int map = Map.map;
         int value = Integer.MIN_VALUE;
         Map.visitedStates++;
@@ -57,7 +57,7 @@ public class MiniMaxSearch {
         return value[0];
     }
 
-    public static void search(int map, Consumer<Integer> consumer) {
+    private static void search(int map, Consumer<Integer> consumer) {
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
                 consumer.accept(position);
