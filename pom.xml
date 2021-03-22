@@ -4,21 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>de.marcluque</groupId>
     <artifactId>TicTacToeMiniMax</artifactId>
     <version>1.0</version>
 
     <name>tictactoeai</name>
     <description>A simple AI for TicTacToe with Alpha-Beta pruning and binary encoding for the board</description>
-    <url>http://datasecs.de</url>
+    <url>http://marcluque.com</url>
     <inceptionYear>2020</inceptionYear>
 
     <developers>
         <developer>
-            <name>DataSecs</name>
-            <email>datasecs@outlook.de</email>
-            <url>https://datasecs.de</url>
-            <organizationUrl>https://github.com/DataSecs</organizationUrl>
+            <name>marcluque</name>
+            <email>marcluque@outlook.com</email>
+            <url>https://marcluque.com</url>
+            <organizationUrl>https://github.com/marcluque</organizationUrl>
         </developer>
     </developers>
 
