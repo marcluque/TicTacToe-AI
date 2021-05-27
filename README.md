@@ -13,5 +13,4 @@ Alpha-Beta:
 My machine:  
 Debian 11  
 Intel i5-8250U @ 1.60 GHz  
-M.2 (NGFF) 2280 SSD  
 8 GB DDR4-2400 SDRAM
