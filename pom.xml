@@ -9,7 +9,7 @@
     <version>1.0</version>
 
     <name>tictactoeai</name>
-    <description>A simple AI for TicTacToe with Alpha-Beta pruning and binary encoding for the board</description>
+    <description>A simple AI for de.marcluque.tictactoeai.TicTacToe with Alpha-Beta pruning and binary encoding for the board</description>
     <url>http://marcluque.com</url>
     <inceptionYear>2020</inceptionYear>
 

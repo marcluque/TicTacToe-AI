@@ -1,25 +1,31 @@
+package de.marcluque.tictactoeai.search;
+
+import de.marcluque.tictactoeai.map.Map;
+
 /*
  * Created with <3 by marcluque, March 2020
  */
 public class AlphaBetaSearch {
 
-    public static void search() {
-        int map = Map.map;
-        int value = Integer.MIN_VALUE;
-        Map.visitedStates++;
+    private AlphaBetaSearch() {}
 
-        for (int move : Map.moves) {
-            int newValue = minValue(Map.setTile(map, move, Map.MAX), Integer.MIN_VALUE, Integer.MAX_VALUE);
+    public static void search() {
+        int map = Map.getMapRepresentation();
+        int value = Integer.MIN_VALUE;
+        Map.setVisitedStates(Map.getVisitedStates() + 1);
+
+        for (int move : Map.getMoves()) {
+            int newValue = minValue(Map.setTile(map, move, Map.getMAX()), Integer.MIN_VALUE, Integer.MAX_VALUE);
 
             if (newValue > value) {
-                Map.returnMove = move;
+                Map.setReturnMove(move);
                 value = newValue;
             }
         }
     }
 
     private static int maxValue(int map, int alpha, int beta) {
-        Map.visitedStates++;
+        Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
         int result = Map.utility(map);
@@ -32,7 +38,7 @@ public class AlphaBetaSearch {
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.max(value, minValue(Map.setTile(map, position, Map.MAX), alpha, beta));
+                value = Math.max(value, minValue(Map.setTile(map, position, Map.getMAX()), alpha, beta));
 
                 if (value >= beta) {
                     return value;
@@ -46,7 +52,7 @@ public class AlphaBetaSearch {
     }
 
     private static int minValue(int map, int alpha, int beta) {
-        Map.visitedStates++;
+        Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
         int result = Map.utility(map);
@@ -59,7 +65,7 @@ public class AlphaBetaSearch {
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
             if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.min(value, maxValue(Map.setTile(map, position, Map.MIN), alpha, beta));
+                value = Math.min(value, maxValue(Map.setTile(map, position, Map.getMIN()), alpha, beta));
 
                 if (value <= alpha) {
                     return value;
