@@ -13,14 +13,16 @@ import java.util.logging.Logger;
 /*
  * Created with <3 by marcluque, March 2020
  */
-public class TicTacToe {
+public final class TicTacToe {
 
     private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
             "[%1$tF %1$tT] %2$s %n", TicTacToe.class);
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    private TicTacToe() { }
+
+    public static void main(final String[] args) {
         LOGGER.info("Please pick whether opponent shall use Alpha-Beta pruning (1) or plain MiniMax (0)");
         int choice = SCANNER.nextInt();
         while (choice != 0 && choice != 1) {

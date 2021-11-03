@@ -11,14 +11,14 @@ import java.util.logging.Logger;
 /*
  * Created with <3 by marcluque, March 2021
  */
-public class CorrectnessTest {
+public final class CorrectnessTest {
 
     private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
             "[%1$tF %1$tT] %2$s %n", CorrectnessTest.class);
 
     private CorrectnessTest() { }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         /* Board:
          * O X O
          * X O X

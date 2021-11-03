@@ -10,13 +10,13 @@ import java.util.logging.Logger;
 /*
  * Created with <3 by marcluque, March 2020
  */
-public class Map {
+public final class Map {
 
     private static int intMap;
 
     private static final Set<Integer> MOVES = new HashSet<>(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
-    private static int visitedStates = 0;
+    private static int visitedStates;
 
     private static int returnMove = -1;
 
@@ -69,7 +69,7 @@ public class Map {
         return returnMove;
     }
 
-    public static void setReturnMove(int returnMove) {
+    public static void setReturnMove(final int returnMove) {
         Map.returnMove = returnMove;
     }
 

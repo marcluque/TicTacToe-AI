@@ -9,7 +9,7 @@ import java.util.logging.SimpleFormatter;
 /*
  * Created with <3 by marcluque, November 2021
  */
-public class LoggerUtil {
+public final class LoggerUtil {
 
     private LoggerUtil() {}
 
@@ -19,7 +19,7 @@ public class LoggerUtil {
         ConsoleHandler handler = new ConsoleHandler();
         handler.setFormatter(new SimpleFormatter() {
             @Override
-            public synchronized String format(LogRecord lr) {
+            public String format(LogRecord lr) {
                 return String.format(format,
                         new Date(lr.getMillis()),
                         lr.getMessage()

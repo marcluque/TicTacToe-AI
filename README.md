@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![Made With Love](https://img.shields.io/badge/Made%20With-Love-blue.svg)](https://marcluque.com)
+[![Java CI with Maven](https://github.com/marcluque/TicTacToe-AI/actions/workflows/maven.yml/badge.svg)](https://github.com/marcluque/TicTacToe-AI/actions/workflows/maven.yml)
 [![Coverity](https://scan.coverity.com/projects/24002/badge.svg)](https://scan.coverity.com/projects/marcluque-reversi-ai)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marcluque_TicTacToe-AI&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=marcluque_TicTacToe-AI)
 [![CodeFactor](https://www.codefactor.io/repository/github/marcluque/tictactoe-ai/badge)](https://www.codefactor.io/repository/github/marcluque/tictactoe-ai)

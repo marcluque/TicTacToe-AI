@@ -3,7 +3,7 @@ package de.marcluque.tictactoeai.map;
 /*
  * Created with <3 by marcluque, November 2021
  */
-public class Utility {
+public final class Utility {
 
     public static final int MID_GAME_UTILITY = 100;
 

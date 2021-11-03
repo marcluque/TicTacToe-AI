@@ -3,19 +3,16 @@ package de.marcluque.tictactoeai;
 import de.marcluque.tictactoeai.map.Map;
 import de.marcluque.tictactoeai.search.AlphaBetaSearch;
 import de.marcluque.tictactoeai.search.MiniMaxSearch;
-import de.marcluque.tictactoeai.utils.LoggerUtil;
 import de.marcluque.tictactoeai.utils.MapUtil;
-
-import java.util.logging.Logger;
 
 /*
  * Created with <3 by marcluque, March 2021
  */
-public class PerformanceTest {
+public final class PerformanceTest {
 
     private PerformanceTest() { }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // Warm-up
         for (int i = 0; i < 100; i++) {
             MiniMaxSearch.search();

@@ -25,7 +25,7 @@ public final class AlphaBetaSearch {
         }
     }
 
-    private static int maxValue(final int intMap, int alpha, int beta) {
+    private static int maxValue(final int intMap, int alpha, final int beta) {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
@@ -52,7 +52,7 @@ public final class AlphaBetaSearch {
         return value;
     }
 
-    private static int minValue(final int intMap, int alpha, int beta) {
+    private static int minValue(final int intMap, final int alpha, int beta) {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
