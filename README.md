@@ -11,6 +11,7 @@
 [![DeepSource](https://deepsource.io/gh/marcluque/TicTacToe-AI.svg/?label=active+issues&show_trend=true&token=BlIRwY9gU8HRFo60bIu8Hdw9)](https://deepsource.io/gh/marcluque/TicTacToe-AI/?ref=repository-badge)
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/marcluque/TicTacToe-AI.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/marcluque/TicTacToe-AI/context:java)
 [![BCH compliance](https://bettercodehub.com/edge/badge/marcluque/TicTacToe-AI?branch=master)](https://bettercodehub.com/)
+[![GuardRails badge](https://api.guardrails.io/v2/badges/marcluque/TicTacToe-AI.svg?token=2572c18894fd771c696105913f46a2d33844856863fe64e4fad80b31152e56a7&provider=github)](https://dashboard.guardrails.io/gh/marcluque/98811)
 
 This is a simple AI for TicTacToe. There is no real challenge in constructing an AI for a game like TicTacToe. The purpose of this project was the binary encoding of the board and an as efficient as possible MiniMax. The algorithm is implemented with and without Alpha-Beta pruning.
 
