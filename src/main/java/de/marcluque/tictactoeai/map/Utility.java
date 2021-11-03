@@ -38,10 +38,10 @@ public class Utility {
 
     private Utility() {}
 
-    public static int compute(final int mapRepresentation) {
-        final int maxMap = (mapRepresentation & 0b111111111000000000) >> 9;
-        final int minMap = mapRepresentation & 0b111111111;
-        final boolean mapFull = ((mapRepresentation & 0b111111111) | (mapRepresentation & 0b111111111000000000) >> 9)
+    public static int compute(final int intMap) {
+        final int maxMap = (intMap & 0b111111111000000000) >> 9;
+        final int minMap = intMap & 0b111111111;
+        final boolean mapFull = ((intMap & 0b111111111) | (intMap & 0b111111111000000000) >> 9)
                 == 0b111111111;
         int result = mapFull ? DRAW : MID_GAME_UTILITY;
 

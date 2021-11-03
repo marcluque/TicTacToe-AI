@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class Map {
 
-    private static int mapRepresentation;
+    private static int intMap;
 
     private static final Set<Integer> MOVES = new HashSet<>(List.of(0, 1, 2, 3, 4, 5, 6, 7, 8));
 
@@ -29,26 +29,28 @@ public class Map {
 
     private Map() {}
 
-    // Position is 0 to 8, player is 0 or 1
-    public static int setTile(int map, int position, int player) {
+    /**
+     * Position is 0 to 8, player is 0 or 1
+     */
+    public static int setTile(int intMap, int position, int player) {
         // Check tile is not in use
-        if ((map & (1 << position + 9)) == (1 << position + 9) || (map & (1 << position)) == (1 << position)) {
+        if ((intMap & (1 << position + 9)) == (1 << position + 9) || (intMap & (1 << position)) == (1 << position)) {
             LOGGER.info(() -> String.format("Position %d is already set, please pick another position!", position + 1));
             return Integer.MIN_VALUE;
         } else {
             // Else write 1 to the target position
-            map |= (1 << position + (player * 9));
+            intMap |= (1 << position + (player * 9));
         }
 
-        return map;
+        return intMap;
     }
 
     public static int getMapRepresentation() {
-        return mapRepresentation;
+        return intMap;
     }
 
-    public static void setMapRepresentation(final int mapRepresentation) {
-        Map.mapRepresentation = mapRepresentation;
+    public static void setMapRepresentation(final int intMap) {
+        Map.intMap = intMap;
     }
 
     public static Set<Integer> getMoves() {

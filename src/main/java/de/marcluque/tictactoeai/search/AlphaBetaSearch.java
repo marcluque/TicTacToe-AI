@@ -11,12 +11,12 @@ public final class AlphaBetaSearch {
     private AlphaBetaSearch() {}
 
     public static void search() {
-        int map = Map.getMapRepresentation();
+        final int intMap = Map.getMapRepresentation();
         int value = Integer.MIN_VALUE;
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         for (int move : Map.getMoves()) {
-            int newValue = minValue(Map.setTile(map, move, Map.getMAX()), Integer.MIN_VALUE, Integer.MAX_VALUE);
+            final int newValue = minValue(Map.setTile(intMap, move, Map.getMAX()), Integer.MIN_VALUE, Integer.MAX_VALUE);
 
             if (newValue > value) {
                 Map.setReturnMove(move);
@@ -25,11 +25,11 @@ public final class AlphaBetaSearch {
         }
     }
 
-    private static int maxValue(int map, int alpha, int beta) {
+    private static int maxValue(final int intMap, int alpha, int beta) {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        final int result = Utility.compute(map);
+        final int result = Utility.compute(intMap);
         if (result != Utility.MID_GAME_UTILITY) {
             return result;
         }
@@ -38,8 +38,8 @@ public final class AlphaBetaSearch {
 
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
-            if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.max(value, minValue(Map.setTile(map, position, Map.getMAX()), alpha, beta));
+            if ((intMap & (1 << position + 9)) != (1 << position + 9) && (intMap & (1 << position)) != (1 << position)) {
+                value = Math.max(value, minValue(Map.setTile(intMap, position, Map.getMAX()), alpha, beta));
 
                 if (value >= beta) {
                     break;
@@ -52,11 +52,11 @@ public final class AlphaBetaSearch {
         return value;
     }
 
-    private static int minValue(int map, int alpha, int beta) {
+    private static int minValue(final int intMap, int alpha, int beta) {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        final int result = Utility.compute(map);
+        final int result = Utility.compute(intMap);
         if (result != Utility.MID_GAME_UTILITY) {
             return result;
         }
@@ -65,8 +65,8 @@ public final class AlphaBetaSearch {
 
         // Calculate available moves and execute when found
         for (int position = 0; position < 9; position++) {
-            if ((map & (1 << position + 9)) != (1 << position + 9) && (map & (1 << position)) != (1 << position)) {
-                value = Math.min(value, maxValue(Map.setTile(map, position, Map.getMIN()), alpha, beta));
+            if ((intMap & (1 << position + 9)) != (1 << position + 9) && (intMap & (1 << position)) != (1 << position)) {
+                value = Math.min(value, maxValue(Map.setTile(intMap, position, Map.getMIN()), alpha, beta));
 
                 if (value <= alpha) {
                     break;
