@@ -1,6 +1,7 @@
 package de.marcluque.tictactoeai.search;
 
 import de.marcluque.tictactoeai.map.Map;
+import de.marcluque.tictactoeai.map.Utility;
 
 /*
  * Created with <3 by marcluque, March 2020
@@ -28,7 +29,7 @@ public class AlphaBetaSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Map.utility(map);
+        int result = Utility.compute(map);
         if (result != 100) {
             return result;
         }
@@ -55,7 +56,7 @@ public class AlphaBetaSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Map.utility(map);
+        int result = Utility.compute(map);
         if (result != 100) {
             return result;
         }

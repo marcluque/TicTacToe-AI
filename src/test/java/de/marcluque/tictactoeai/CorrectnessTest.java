@@ -1,5 +1,9 @@
+package de.marcluque.tictactoeai;
+
 import de.marcluque.tictactoeai.map.Map;
+import de.marcluque.tictactoeai.map.Utility;
 import de.marcluque.tictactoeai.search.MiniMaxSearch;
+import de.marcluque.tictactoeai.utils.LoggerUtil;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -9,7 +13,8 @@ import java.util.logging.Logger;
  */
 public class CorrectnessTest {
 
-    private static final Logger logger = Logger.getGlobal();
+    private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
+            "[%1$tF %1$tT] %2$s %n", CorrectnessTest.class);
 
     public static void main(String[] args) {
         /* Board:
@@ -32,24 +37,24 @@ public class CorrectnessTest {
 
         assert Map.getVisitedStates() == 5;
         assert Map.getReturnMove() == 8;
-        assert Map.utility(Map.getMapRepresentation()) == 100;
+        assert Utility.compute(Map.getMapRepresentation()) == 100;
 
         Map.setMapRepresentation(Map.setTile(Map.getMapRepresentation(), 7, Map.getMIN()));
         Map.setMapRepresentation(Map.setTile(Map.getMapRepresentation(), 8, Map.getMAX()));
 
-        assert Map.utility(Map.getMapRepresentation()) == 0;
+        assert Utility.compute(Map.getMapRepresentation()) == 0;
 
         long best = Integer.MAX_VALUE;
         for (int i = 0; i < 1000; i++) {
             long start = System.nanoTime();
-            Map.utility(Map.getMapRepresentation());
+            Utility.compute(Map.getMapRepresentation());
             long end = System.nanoTime();
             if ((end - start) < best) {
                 best = (end - start);
             }
         }
 
-        logger.info("TIME: " + best + " ns = " + (best / 1000d) + " µs");
+        LOGGER.info("Fastest move: " + best + " ns = " + (best / 1000d) + " µs");
 
 
         /* Board:
@@ -66,6 +71,6 @@ public class CorrectnessTest {
         Map.setMapRepresentation(Map.setTile(Map.getMapRepresentation(), 2, Map.getMAX()));
         Map.setMapRepresentation(Map.setTile(Map.getMapRepresentation(), 3, Map.getMAX()));
 
-        assert Map.utility(Map.getMapRepresentation()) == -1;
+        assert Utility.compute(Map.getMapRepresentation()) == -1;
     }
 }

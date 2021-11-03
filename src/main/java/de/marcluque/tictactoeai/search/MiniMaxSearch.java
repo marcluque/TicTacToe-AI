@@ -1,6 +1,7 @@
 package de.marcluque.tictactoeai.search;
 
 import de.marcluque.tictactoeai.map.Map;
+import de.marcluque.tictactoeai.map.Utility;
 
 import java.util.function.IntConsumer;
 
@@ -30,7 +31,7 @@ public class MiniMaxSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Map.utility(map);
+        int result = Utility.compute(map);
         if (result != 100) {
             return result;
         }
@@ -46,7 +47,7 @@ public class MiniMaxSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Map.utility(map);
+        int result = Utility.compute(map);
         if (result != 100) {
             return result;
         }

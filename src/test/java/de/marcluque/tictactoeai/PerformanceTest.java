@@ -1,6 +1,10 @@
-import de.marcluque.tictactoeai.search.AlphaBetaSearch;
+package de.marcluque.tictactoeai;
+
 import de.marcluque.tictactoeai.map.Map;
+import de.marcluque.tictactoeai.search.AlphaBetaSearch;
 import de.marcluque.tictactoeai.search.MiniMaxSearch;
+import de.marcluque.tictactoeai.utils.LoggerUtil;
+import de.marcluque.tictactoeai.utils.MapUtil;
 
 import java.util.logging.Logger;
 
@@ -8,8 +12,6 @@ import java.util.logging.Logger;
  * Created with <3 by marcluque, March 2021
  */
 public class PerformanceTest {
-
-    private static final Logger logger = Logger.getGlobal();
 
     public static void main(String[] args) {
         // Warm-up
@@ -29,8 +31,7 @@ public class PerformanceTest {
             }
         }
 
-        Map.printStats("MiniMax", best);
-        logger.info("");
+        MapUtil.printStats("MiniMax", best);
 
         // Alpha-Beta
         best = Integer.MAX_VALUE;
@@ -44,7 +45,6 @@ public class PerformanceTest {
             }
         }
 
-        Map.printStats("Alpha-Beta", best);
-        logger.info("");
+        MapUtil.printStats("Alpha-Beta", best);
     }
 }
