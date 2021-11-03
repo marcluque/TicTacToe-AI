@@ -47,7 +47,7 @@ public class Map {
         return mapRepresentation;
     }
 
-    public static void setMapRepresentation(int mapRepresentation) {
+    public static void setMapRepresentation(final int mapRepresentation) {
         Map.mapRepresentation = mapRepresentation;
     }
 

@@ -5,6 +5,14 @@ package de.marcluque.tictactoeai.map;
  */
 public class Utility {
 
+    public static final int MID_GAME_UTILITY = 100;
+
+    public static final int COMPUTER_WON = 1;
+
+    public static final int PLAYER_WON = -1;
+
+    public static final int DRAW = 0;
+
     private static final int[] TERMINAL_TEST = new int[8];
 
     static {
@@ -30,23 +38,25 @@ public class Utility {
 
     private Utility() {}
 
-    public static int compute(int map) {
-        int maxMap = (map & 0b111111111000000000) >> 9;
-        int minMap = map & 0b111111111;
+    public static int compute(final int mapRepresentation) {
+        final int maxMap = (mapRepresentation & 0b111111111000000000) >> 9;
+        final int minMap = mapRepresentation & 0b111111111;
+        final boolean mapFull = ((mapRepresentation & 0b111111111) | (mapRepresentation & 0b111111111000000000) >> 9)
+                == 0b111111111;
+        int result = mapFull ? DRAW : MID_GAME_UTILITY;
 
         for (int j : TERMINAL_TEST) {
             // MAX
             if ((maxMap & j) == j) {
-                return 1;
+                result = COMPUTER_WON;
             }
             // MIN
             else if ((minMap & j) == j) {
-                return -1;
+                result = PLAYER_WON;
             }
         }
 
-        boolean mapFull = ((map & 0b111111111) | (map & 0b111111111000000000) >> 9) == 0b111111111;
-        return mapFull ? 0 : 100;
+        return result;
     }
 
 }

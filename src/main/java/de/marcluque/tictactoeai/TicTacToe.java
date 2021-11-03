@@ -106,13 +106,13 @@ public class TicTacToe {
 
     private static boolean checkWin() {
         int utility = Utility.compute(Map.getMapRepresentation());
-        if (utility == 0) {
+        if (utility == Utility.DRAW) {
             LOGGER.info("Game done!\nDraw!");
             return true;
-        } else if (utility == 1) {
+        } else if (utility == Utility.COMPUTER_WON) {
             LOGGER.info("Game done!\nYour opponent wins!");
             return true;
-        } else if (utility == -1) {
+        } else if (utility == Utility.PLAYER_WON) {
             LOGGER.info("Game done!\nYou win!");
             return true;
         } else {

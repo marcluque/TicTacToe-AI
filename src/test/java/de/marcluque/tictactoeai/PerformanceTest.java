@@ -13,6 +13,8 @@ import java.util.logging.Logger;
  */
 public class PerformanceTest {
 
+    private PerformanceTest() { }
+
     public static void main(String[] args) {
         // Warm-up
         for (int i = 0; i < 100; i++) {

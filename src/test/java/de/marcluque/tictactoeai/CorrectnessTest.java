@@ -16,6 +16,8 @@ public class CorrectnessTest {
     private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
             "[%1$tF %1$tT] %2$s %n", CorrectnessTest.class);
 
+    private CorrectnessTest() { }
+
     public static void main(String[] args) {
         /* Board:
          * O X O
@@ -54,7 +56,8 @@ public class CorrectnessTest {
             }
         }
 
-        LOGGER.info("Fastest move: " + best + " ns = " + (best / 1000d) + " µs");
+        final long finalBest = best;
+        LOGGER.info(() -> String.format("Fastest move: %d ns = %s µs", finalBest, finalBest / 1000d));
 
 
         /* Board:

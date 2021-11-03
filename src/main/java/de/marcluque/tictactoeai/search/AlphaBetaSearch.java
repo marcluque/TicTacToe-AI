@@ -6,7 +6,7 @@ import de.marcluque.tictactoeai.map.Utility;
 /*
  * Created with <3 by marcluque, March 2020
  */
-public class AlphaBetaSearch {
+public final class AlphaBetaSearch {
 
     private AlphaBetaSearch() {}
 
@@ -29,8 +29,8 @@ public class AlphaBetaSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Utility.compute(map);
-        if (result != 100) {
+        final int result = Utility.compute(map);
+        if (result != Utility.MID_GAME_UTILITY) {
             return result;
         }
 
@@ -42,7 +42,7 @@ public class AlphaBetaSearch {
                 value = Math.max(value, minValue(Map.setTile(map, position, Map.getMAX()), alpha, beta));
 
                 if (value >= beta) {
-                    return value;
+                    break;
                 }
 
                 alpha = Math.max(alpha, value);
@@ -56,8 +56,8 @@ public class AlphaBetaSearch {
         Map.setVisitedStates(Map.getVisitedStates() + 1);
 
         // Terminal test
-        int result = Utility.compute(map);
-        if (result != 100) {
+        final int result = Utility.compute(map);
+        if (result != Utility.MID_GAME_UTILITY) {
             return result;
         }
 
@@ -69,7 +69,7 @@ public class AlphaBetaSearch {
                 value = Math.min(value, maxValue(Map.setTile(map, position, Map.getMIN()), alpha, beta));
 
                 if (value <= alpha) {
-                    return value;
+                    break;
                 }
 
                 beta = Math.min(beta, value);
