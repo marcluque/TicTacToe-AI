@@ -1,9 +1,9 @@
-package de.marcluque.tictactoeai;
+package com.marcluque.tictactoeai;
 
-import de.marcluque.tictactoeai.map.Map;
-import de.marcluque.tictactoeai.search.AlphaBetaSearch;
-import de.marcluque.tictactoeai.search.MiniMaxSearch;
-import de.marcluque.tictactoeai.utils.MapUtil;
+import com.marcluque.tictactoeai.map.Map;
+import com.marcluque.tictactoeai.utils.MapUtil;
+import com.marcluque.tictactoeai.search.AlphaBetaSearch;
+import com.marcluque.tictactoeai.search.MiniMaxSearch;
 
 /*
  * Created with <3 by marcluque, March 2021

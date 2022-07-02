@@ -1,6 +1,6 @@
-package de.marcluque.tictactoeai.utils;
+package com.marcluque.tictactoeai.utils;
 
-import de.marcluque.tictactoeai.map.Map;
+import com.marcluque.tictactoeai.map.Map;
 
 import java.util.logging.Logger;
 
@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  */
 public final class MapUtil {
 
-    private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai.utils",
+    private static final Logger LOGGER = LoggerUtil.createLogger("com.marcluque.tictactoeai.utils",
             "%2$s %n", MapUtil.class);
 
     private MapUtil() {}

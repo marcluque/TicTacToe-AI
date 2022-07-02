@@ -1,11 +1,11 @@
-package de.marcluque.tictactoeai;
+package com.marcluque.tictactoeai;
 
-import de.marcluque.tictactoeai.map.Map;
-import de.marcluque.tictactoeai.map.Utility;
-import de.marcluque.tictactoeai.search.AlphaBetaSearch;
-import de.marcluque.tictactoeai.search.MiniMaxSearch;
-import de.marcluque.tictactoeai.utils.LoggerUtil;
-import de.marcluque.tictactoeai.utils.MapUtil;
+import com.marcluque.tictactoeai.map.Map;
+import com.marcluque.tictactoeai.map.Utility;
+import com.marcluque.tictactoeai.utils.LoggerUtil;
+import com.marcluque.tictactoeai.utils.MapUtil;
+import com.marcluque.tictactoeai.search.AlphaBetaSearch;
+import com.marcluque.tictactoeai.search.MiniMaxSearch;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public final class TicTacToe {
 
-    private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
+    private static final Logger LOGGER = LoggerUtil.createLogger("com.marcluque.tictactoeai",
             "[%1$tF %1$tT] %2$s %n", TicTacToe.class);
 
     private static final Scanner SCANNER = new Scanner(System.in);

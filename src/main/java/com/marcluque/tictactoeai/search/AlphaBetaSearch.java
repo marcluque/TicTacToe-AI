@@ -1,7 +1,7 @@
-package de.marcluque.tictactoeai.search;
+package com.marcluque.tictactoeai.search;
 
-import de.marcluque.tictactoeai.map.Map;
-import de.marcluque.tictactoeai.map.Utility;
+import com.marcluque.tictactoeai.map.Map;
+import com.marcluque.tictactoeai.map.Utility;
 
 /*
  * Created with <3 by marcluque, March 2020

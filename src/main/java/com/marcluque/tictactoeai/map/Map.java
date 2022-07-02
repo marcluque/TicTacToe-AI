@@ -1,6 +1,6 @@
-package de.marcluque.tictactoeai.map;
+package com.marcluque.tictactoeai.map;
 
-import de.marcluque.tictactoeai.utils.LoggerUtil;
+import com.marcluque.tictactoeai.utils.LoggerUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,7 +24,7 @@ public final class Map {
 
     private static final int MIN = 0;
 
-    private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai.map",
+    private static final Logger LOGGER = LoggerUtil.createLogger("com.marcluque.tictactoeai.map",
             "%2$s %n", Map.class);
 
     private Map() {}

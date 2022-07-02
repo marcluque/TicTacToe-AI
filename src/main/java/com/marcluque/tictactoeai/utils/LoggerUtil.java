@@ -1,4 +1,4 @@
-package de.marcluque.tictactoeai.utils;
+package com.marcluque.tictactoeai.utils;
 
 import java.util.Date;
 import java.util.logging.ConsoleHandler;

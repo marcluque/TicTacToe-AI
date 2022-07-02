@@ -1,9 +1,9 @@
-package de.marcluque.tictactoeai;
+package com.marcluque.tictactoeai;
 
-import de.marcluque.tictactoeai.map.Map;
-import de.marcluque.tictactoeai.map.Utility;
-import de.marcluque.tictactoeai.search.MiniMaxSearch;
-import de.marcluque.tictactoeai.utils.LoggerUtil;
+import com.marcluque.tictactoeai.map.Map;
+import com.marcluque.tictactoeai.map.Utility;
+import com.marcluque.tictactoeai.utils.LoggerUtil;
+import com.marcluque.tictactoeai.search.MiniMaxSearch;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  */
 public final class CorrectnessTest {
 
-    private static final Logger LOGGER = LoggerUtil.createLogger("de.marcluque.tictactoeai",
+    private static final Logger LOGGER = LoggerUtil.createLogger("com.marcluque.tictactoeai",
             "[%1$tF %1$tT] %2$s %n", CorrectnessTest.class);
 
     private CorrectnessTest() { }

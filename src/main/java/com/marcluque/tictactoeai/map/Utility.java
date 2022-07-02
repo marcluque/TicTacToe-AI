@@ -1,4 +1,4 @@
-package de.marcluque.tictactoeai.map;
+package com.marcluque.tictactoeai.map;
 
 /*
  * Created with <3 by marcluque, November 2021
